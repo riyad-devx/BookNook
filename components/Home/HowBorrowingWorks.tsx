@@ -1,4 +1,6 @@
 import { BookMarked, RotateCcw, Search } from "lucide-react";
+import { Reveal } from "@/components/motion/Reveal";
+import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 
 const STEPS = [
   {
@@ -29,7 +31,7 @@ export default function HowBorrowingWorks() {
       </div>
 
       <div className="relative mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-6">
-        <div className="mx-auto max-w-xl text-center">
+        <Reveal className="mx-auto max-w-xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-accent-line/20 bg-accent/10 px-3 py-1 text-[10px] font-semibold tracking-[0.28em] text-accent-soft uppercase">
             Simple steps
           </span>
@@ -41,12 +43,13 @@ export default function HowBorrowingWorks() {
           <p className="mt-2 text-sm leading-6 text-ink-soft">
             Three steps. No library card needed.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
+        <StaggerGroup className="mt-10 grid gap-5 md:grid-cols-3">
           {STEPS.map(({ number, icon: Icon, title, text }) => (
-            <article
+            <StaggerItem
               key={number}
+              as="article"
               className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line-soft bg-panel/80 p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-accent-line/25 hover:shadow-[0_24px_60px_-30px_rgba(16,185,129,0.45)]"
             >
               <span className="absolute top-5 right-5 font-heading text-xs font-semibold tracking-[0.2em] text-accent-dim">
@@ -64,9 +67,9 @@ export default function HowBorrowingWorks() {
               <p className="mt-2 text-sm leading-6 text-ink-muted">
                 {text}
               </p>
-            </article>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
       </div>
     </section>
   );

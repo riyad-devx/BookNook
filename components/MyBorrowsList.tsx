@@ -11,6 +11,10 @@ import {
   TriangleAlert,
 } from "lucide-react";
 import { toast } from "@/components/ui/toast";
+import {
+  StaggerGroup,
+  StaggerItem,
+} from "@/components/motion/Stagger";
 
 type Borrow = {
   _id: string;
@@ -214,9 +218,10 @@ export default function MyBorrowsList() {
             <span>Action</span>
           </div>
 
-          <ul>
+          <StaggerGroup as="ul">
             {borrows.map((borrow) => (
-              <li
+              <StaggerItem
+                as="li"
                 key={borrow._id}
                 className={`grid gap-4 border-b border-line-soft px-4 py-4 transition-colors last:border-b-0 hover:bg-surface sm:px-5 md:items-center ${ROW_GRID}`}
               >
@@ -286,9 +291,9 @@ export default function MyBorrowsList() {
                     <span className="text-xs text-ink-faint">Returned</span>
                   )}
                 </div>
-              </li>
+              </StaggerItem>
             ))}
-          </ul>
+          </StaggerGroup>
         </div>
       )}
     </div>

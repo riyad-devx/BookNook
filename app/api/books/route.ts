@@ -2,10 +2,6 @@ import { auth } from "@/lib/auth";
 import { bearerAuth, getRequestToken } from "@/lib/api-auth";
 import { BOOKS_API_BASE } from "@/lib/books-api";
 
-/**
- * Creates a book on behalf of the signed-in user. The owner fields are
- * filled from the verified JWT by the backend, never from the client.
- */
 export async function POST(request: Request) {
   const session = await auth.api.getSession({ headers: request.headers });
 

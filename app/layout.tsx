@@ -3,6 +3,7 @@ import { Fraunces, National_Park } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Home/Footer";
 import Navber from "@/components/Navber";
+import MotionProvider from "@/components/motion/MotionProvider";
 import { cn } from "@/lib/utils";
 
 const frauncesHeading = Fraunces({ subsets: ["latin"], variable: "--font-heading" });
@@ -40,7 +41,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body className="min-h-full flex flex-col">
         <Navber />
-        {children}
+        <MotionProvider>{children}</MotionProvider>
         <Footer />
       </body>
     </html>

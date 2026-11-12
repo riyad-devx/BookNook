@@ -1,5 +1,11 @@
 import type { NextConfig } from "next";
 
+// Same value the app uses through `lib/books-api.ts`. The backend serves the
+// GridFS cover images, so the rewrite and image pattern follow it too.
+const booksApiUrl = new URL(
+  process.env.NEXT_PUBLIC_BOOKS_API_URL ?? "http://localhost:5000",
+);
+
 const nextConfig: NextConfig = {
   experimental: {
     agentFeedback: true,
@@ -11,9 +17,9 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: "localhost",
-        port: "5000",
+        protocol: booksApiUrl.protocol.replace(":", "") as "http" | "https",
+        hostname: booksApiUrl.hostname,
+        ...(booksApiUrl.port ? { port: booksApiUrl.port } : {}),
         pathname: "/book-image/**",
       },
     ],
@@ -23,7 +29,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/book-image/:id",
-        destination: "http://localhost:5000/book-image/:id",
+        destination: `${booksApiUrl.origin}/book-image/:id`,
       },
     ];
   },

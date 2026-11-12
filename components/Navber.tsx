@@ -154,6 +154,8 @@ function ThemeToggle({
       type="button"
       onClick={onToggle}
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+      aria-pressed={theme === "dark"}
+      title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
       className="relative grid size-9 place-items-center rounded-full border border-line bg-surface text-ink-soft transition-all duration-300 hover:border-accent-line/25 hover:bg-accent/10 hover:text-accent-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
     >
       <Sun

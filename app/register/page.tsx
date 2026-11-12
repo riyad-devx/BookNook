@@ -15,6 +15,7 @@ import {
   X,
 } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
+import { Reveal } from "@/components/motion/Reveal";
 import { Toaster, toast } from "@/components/ui/toast";
 
 export default function RegisterPage() {
@@ -180,11 +181,12 @@ export default function RegisterPage() {
       {/* Register Form Section */}
       <section className="w-full">
         <div className="mx-auto w-full max-w-xl px-4 py-10 sm:px-6 sm:py-12">
-          <form
-            onSubmit={handleRegister}
-            noValidate
-            className="rounded-[1.75rem] border border-line-soft bg-panel/80 p-5 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.9)] backdrop-blur-xl sm:p-8"
-          >
+          <Reveal>
+            <form
+              onSubmit={handleRegister}
+              noValidate
+              className="rounded-[1.75rem] border border-line-soft bg-panel/80 p-5 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.9)] backdrop-blur-xl sm:p-8"
+            >
             {error && (
               <p className="mb-5 rounded-xl border border-danger-line-strong/25 bg-danger-surface/10 px-3.5 py-2.5 text-xs text-danger">
                 {error}
@@ -364,6 +366,7 @@ export default function RegisterPage() {
               </Link>
             </p>
           </form>
+          </Reveal>
         </div>
       </section>
 

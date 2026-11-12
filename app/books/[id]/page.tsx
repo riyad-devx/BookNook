@@ -4,11 +4,13 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import { BookOpen, LibraryBig, TriangleAlert } from "lucide-react";
 import BorrowBookButton from "@/components/BorrowBookButton";
+import { Reveal } from "@/components/motion/Reveal";
 import { Toaster } from "@/components/ui/toast";
 import { getServerSession } from "@/lib/session";
 import type { Book } from "@/components/BookCard";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
+import { BOOKS_API_BASE } from "@/lib/books-api";
 
 type BookDetail = Book & {
   userName?: string;
@@ -16,14 +18,12 @@ type BookDetail = Book & {
   imageId?: string;
 };
 
-const API_BASE = "http://localhost:5000";
-
 export const metadata: Metadata = {
   title: "Book Details",
 };
 
 async function fetchBook(id: string, token: string): Promise<BookDetail | null> {
-  const res = await fetch(`${API_BASE}/books/${id}`, {
+  const res = await fetch(`${BOOKS_API_BASE}/books/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -143,82 +143,84 @@ async function BookDetails({
   const session = await getServerSession();
 
   return (
-    <article className="grid gap-8 md:grid-cols-[minmax(0,18rem)_minmax(0,1fr)] md:gap-10">
-      <div className="mx-auto w-full max-w-xs md:max-w-none">
-        <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl border border-line-soft bg-page shadow-[0_30px_70px_-40px_rgba(0,0,0,0.95)]">
-          {imageSrc ? (
-            <Image
-              src={imageSrc}
-              alt={`${book.title} by ${book.author}`}
-              fill
-              priority
-              sizes="(min-width: 768px) 18rem, 80vw"
-              className="object-cover"
-            />
-          ) : (
-            <div className="grid h-full w-full place-items-center text-accent-dim">
-              <BookOpen className="size-10" />
-            </div>
-          )}
-        </div>
-      </div>
-
-      <div className="flex min-w-0 flex-col">
-        <span className="inline-flex w-fit items-center rounded-full border border-accent-line/20 bg-accent/10 px-3 py-1 text-[10px] font-semibold tracking-[0.2em] text-accent-soft uppercase">
-          {book.category || "Uncategorised"}
-        </span>
-
-        <h2 className="mt-4 font-heading text-2xl leading-tight font-semibold tracking-[-0.02em] text-heading sm:text-3xl">
-          {book.title}
-        </h2>
-        <p className="mt-2 text-sm text-ink-muted">by {book.author}</p>
-
-        <p className="mt-6 text-sm leading-7 text-ink-soft sm:text-[15px]">
-          {book.description?.trim()
-            ? book.description
-            : "No description provided for this book yet."}
-        </p>
-
-        <dl className="mt-8 grid gap-4 rounded-2xl border border-line-soft bg-surface p-4 sm:grid-cols-2 sm:p-5">
-          <div className="min-w-0">
-            <dt className="text-[10px] font-semibold tracking-[0.2em] text-accent-faint uppercase">
-              Category
-            </dt>
-            <dd className="mt-1.5 text-sm text-ink">
-              {book.category || "Uncategorised"}
-            </dd>
-          </div>
-          <div className="min-w-0">
-            <dt className="text-[10px] font-semibold tracking-[0.2em] text-accent-faint uppercase">
-              Added By
-            </dt>
-            <dd className="mt-1.5 text-sm text-ink">
-              {book.userName?.trim() || "BookNook member"}
-            </dd>
-            {book.userEmail?.trim() && (
-              <dd className="mt-0.5 truncate text-xs text-ink-faint">
-                {book.userEmail}
-              </dd>
+    <Reveal>
+      <article className="grid gap-8 md:grid-cols-[minmax(0,18rem)_minmax(0,1fr)] md:gap-10">
+        <div className="mx-auto w-full max-w-xs md:max-w-none">
+          <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl border border-line-soft bg-page shadow-[0_30px_70px_-40px_rgba(0,0,0,0.95)]">
+            {imageSrc ? (
+              <Image
+                src={imageSrc}
+                alt={`${book.title} by ${book.author}`}
+                fill
+                priority
+                sizes="(min-width: 768px) 18rem, 80vw"
+                className="object-cover"
+              />
+            ) : (
+              <div className="grid h-full w-full place-items-center text-accent-dim">
+                <BookOpen className="size-10" />
+              </div>
             )}
           </div>
-          <div className="min-w-0">
-            <dt className="text-[10px] font-semibold tracking-[0.2em] text-accent-faint uppercase">
-              Availability
-            </dt>
-            <dd className="mt-1.5 text-sm text-ink">
-              {book.availableCopies} of {book.totalCopies} available
-            </dd>
-          </div>
-        </dl>
+        </div>
 
-        <BorrowBookButton
-          bookId={book._id}
-          availableCopies={book.availableCopies}
-          userName={session?.user.name ?? ""}
-          userEmail={session?.user.email ?? ""}
-        />
-      </div>
-    </article>
+        <div className="flex min-w-0 flex-col">
+          <span className="inline-flex w-fit items-center rounded-full border border-accent-line/20 bg-accent/10 px-3 py-1 text-[10px] font-semibold tracking-[0.2em] text-accent-soft uppercase">
+            {book.category || "Uncategorised"}
+          </span>
+
+          <h2 className="mt-4 font-heading text-2xl leading-tight font-semibold tracking-[-0.02em] text-heading sm:text-3xl">
+            {book.title}
+          </h2>
+          <p className="mt-2 text-sm text-ink-muted">by {book.author}</p>
+
+          <p className="mt-6 text-sm leading-7 text-ink-soft sm:text-[15px]">
+            {book.description?.trim()
+              ? book.description
+              : "No description provided for this book yet."}
+          </p>
+
+          <dl className="mt-8 grid gap-4 rounded-2xl border border-line-soft bg-surface p-4 sm:grid-cols-2 sm:p-5">
+            <div className="min-w-0">
+              <dt className="text-[10px] font-semibold tracking-[0.2em] text-accent-faint uppercase">
+                Category
+              </dt>
+              <dd className="mt-1.5 text-sm text-ink">
+                {book.category || "Uncategorised"}
+              </dd>
+            </div>
+            <div className="min-w-0">
+              <dt className="text-[10px] font-semibold tracking-[0.2em] text-accent-faint uppercase">
+                Added By
+              </dt>
+              <dd className="mt-1.5 text-sm text-ink">
+                {book.userName?.trim() || "BookNook member"}
+              </dd>
+              {book.userEmail?.trim() && (
+                <dd className="mt-0.5 truncate text-xs text-ink-faint">
+                  {book.userEmail}
+                </dd>
+              )}
+            </div>
+            <div className="min-w-0">
+              <dt className="text-[10px] font-semibold tracking-[0.2em] text-accent-faint uppercase">
+                Availability
+              </dt>
+              <dd className="mt-1.5 text-sm text-ink">
+                {book.availableCopies} of {book.totalCopies} available
+              </dd>
+            </div>
+          </dl>
+
+          <BorrowBookButton
+            bookId={book._id}
+            availableCopies={book.availableCopies}
+            userName={session?.user.name ?? ""}
+            userEmail={session?.user.email ?? ""}
+          />
+        </div>
+      </article>
+    </Reveal>
   );
 }
 

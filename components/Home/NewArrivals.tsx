@@ -4,7 +4,10 @@ import BookCard, {
   BookCardSkeleton,
   type Book,
 } from "@/components/BookCard";
+import { Reveal } from "@/components/motion/Reveal";
+import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 import { BOOKS_API_BASE } from "@/lib/books-api";
+
 
 async function getNewArrivals(): Promise<Book[]> {
   try {
@@ -30,7 +33,7 @@ export default async function NewArrivals() {
   return (
     <section className="relative w-full overflow-hidden border-t border-accent-line/10 bg-page">
       <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 sm:py-12 lg:px-6">
-        <div className="max-w-xl">
+        <Reveal className="max-w-xl">
           <span className="inline-flex items-center gap-2 rounded-full border border-accent-line/20 bg-accent/10 px-3 py-1 text-[10px] font-semibold tracking-[0.28em] text-accent-soft uppercase">
             <Sparkles className="size-3" />
             Discover books
@@ -43,14 +46,16 @@ export default async function NewArrivals() {
           <p className="mt-2 text-sm leading-6 text-ink-soft">
             The latest books added to the BookNook shelves.
           </p>
-        </div>
+        </Reveal>
 
         {books.length > 0 ? (
-          <div className="mx-auto mt-8 grid max-w-4xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <StaggerGroup className="mx-auto mt-8 grid max-w-4xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {books.map((book) => (
-              <BookCard key={book._id} book={book} />
+              <StaggerItem key={book._id}>
+                <BookCard book={book} />
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
         ) : (
           <div className="mt-8 flex flex-col items-center rounded-[1.75rem] border border-dashed border-line bg-surface px-6 py-14 text-center">
             <span className="grid size-12 place-items-center rounded-2xl border border-line-soft bg-surface text-accent-faint">

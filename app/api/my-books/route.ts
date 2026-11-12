@@ -2,7 +2,7 @@ import { auth } from "@/lib/auth";
 import { bearerAuth, getRequestToken } from "@/lib/api-auth";
 import { BOOKS_API_BASE } from "@/lib/books-api";
 
-/** Lists only the books owned by the signed-in user. */
+
 export async function GET(request: Request) {
   const session = await auth.api.getSession({ headers: request.headers });
 

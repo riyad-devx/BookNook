@@ -20,6 +20,10 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import type { Book } from "@/components/BookCard";
+import {
+  StaggerGroup,
+  StaggerItem,
+} from "@/components/motion/Stagger";
 
 type MyBook = Book & {
   userId?: string;
@@ -179,9 +183,10 @@ export default function MyBooksList() {
             <span>Actions</span>
           </div>
 
-          <ul>
+          <StaggerGroup as="ul">
             {books.map((book) => (
-              <li
+              <StaggerItem
+                as="li"
                 key={book._id}
                 className={`grid gap-4 border-b border-line-soft px-4 py-4 transition-colors last:border-b-0 hover:bg-surface sm:px-5 md:items-center ${ROW_GRID}`}
               >
@@ -247,9 +252,9 @@ export default function MyBooksList() {
                     Delete
                   </button>
                 </div>
-              </li>
+              </StaggerItem>
             ))}
-          </ul>
+          </StaggerGroup>
         </div>
       )}
 
