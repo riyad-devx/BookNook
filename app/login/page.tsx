@@ -128,13 +128,13 @@ export default function LoginPage() {
   };
 
   const inputClass =
-    "h-11 w-full rounded-xl border border-white/10 bg-white/[0.04] px-3.5 text-sm text-emerald-50 outline-none transition-colors placeholder:text-emerald-100/25 focus:border-emerald-300/40 focus-visible:ring-2 focus-visible:ring-emerald-300/20";
+    "h-11 w-full rounded-xl border border-line bg-surface px-3.5 text-sm text-heading outline-none transition-colors placeholder:text-ink-faint focus:border-accent/40 focus-visible:ring-2 focus-visible:ring-accent/20";
 
   return (
     <main className="min-w-0 flex-1">
 
       {/* Login Header */}
-      <section className="relative w-full overflow-hidden border-b border-emerald-200/10 bg-[#04110b]">
+      <section className="relative w-full overflow-hidden border-b border-accent-line/10 bg-page">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-300/35 to-transparent" />
 
@@ -142,16 +142,16 @@ export default function LoginPage() {
         </div>
 
         <div className="relative mx-auto w-full max-w-5xl px-4 py-10 text-center sm:px-6 sm:py-12">
-          <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200/20 bg-emerald-300/10 px-3 py-1 text-[10px] font-semibold tracking-[0.28em] text-emerald-200/90 uppercase">
+          <span className="inline-flex items-center gap-2 rounded-full border border-accent-line/20 bg-accent/10 px-3 py-1 text-[10px] font-semibold tracking-[0.28em] text-accent-soft uppercase">
             <LogIn className="size-3" />
             Welcome to BookNook
           </span>
 
-          <h1 className="mt-4 font-heading text-3xl font-semibold tracking-[-0.03em] text-[#f7f4e9] sm:text-4xl">
+          <h1 className="mt-4 font-heading text-3xl font-semibold tracking-[-0.03em] text-heading sm:text-4xl">
             Welcome back
           </h1>
 
-          <p className="mx-auto mt-3 max-w-sm text-sm leading-6 text-emerald-50/55">
+          <p className="mx-auto mt-3 max-w-sm text-sm leading-6 text-ink-soft">
             Login to your account and continue your reading journey.
           </p>
         </div>
@@ -163,10 +163,10 @@ export default function LoginPage() {
 
           <form
             onSubmit={handleLogin}
-            className="rounded-[1.75rem] border border-white/[0.09] bg-[#06120d]/80 p-5 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.9)] backdrop-blur-xl sm:p-8"
+            className="rounded-[1.75rem] border border-line-soft bg-panel/80 p-5 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.9)] backdrop-blur-xl sm:p-8"
           >
             {error && (
-              <p className="mb-5 rounded-xl border border-rose-400/25 bg-rose-500/10 px-3.5 py-2.5 text-xs text-rose-200">
+              <p className="mb-5 rounded-xl border border-danger-line-strong/25 bg-danger-surface/10 px-3.5 py-2.5 text-xs text-danger">
                 {error}
               </p>
             )}
@@ -177,13 +177,13 @@ export default function LoginPage() {
               <div>
                 <label
                   htmlFor="email"
-                  className="text-xs text-emerald-200/60"
+                  className="text-xs text-accent-soft"
                 >
                   Email
                 </label>
 
                 <div className="relative mt-2">
-                  <Mail className="absolute top-1/2 left-3.5 size-4 -translate-y-1/2 text-emerald-200/35" />
+                  <Mail className="absolute top-1/2 left-3.5 size-4 -translate-y-1/2 text-accent-dim" />
 
                   <input
                     id="email"
@@ -201,13 +201,13 @@ export default function LoginPage() {
               <div>
                 <label
                   htmlFor="password"
-                  className="text-xs text-emerald-200/60"
+                  className="text-xs text-accent-soft"
                 >
                   Password
                 </label>
 
                 <div className="relative mt-2">
-                  <LockKeyhole className="absolute top-1/2 left-3.5 size-4 -translate-y-1/2 text-emerald-200/35" />
+                  <LockKeyhole className="absolute top-1/2 left-3.5 size-4 -translate-y-1/2 text-accent-dim" />
 
                   <input
                     id="password"
@@ -222,7 +222,7 @@ export default function LoginPage() {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute top-1/2 right-3 -translate-y-1/2 text-emerald-200/50"
+                    className="absolute top-1/2 right-3 -translate-y-1/2 text-accent-faint"
                   >
                     {showPassword ? (
                       <EyeOff className="size-4" />
@@ -251,9 +251,9 @@ export default function LoginPage() {
 
             {/* Divider */}
             <div className="my-6 flex items-center gap-3">
-              <span className="h-px flex-1 bg-white/[0.08]" />
-              <span className="text-xs text-emerald-100/30">OR</span>
-              <span className="h-px flex-1 bg-white/[0.08]" />
+              <span className="h-px flex-1 bg-surface-bright" />
+              <span className="text-xs text-ink-faint">OR</span>
+              <span className="h-px flex-1 bg-surface-bright" />
             </div>
 
             {/* Google Login */}
@@ -261,17 +261,17 @@ export default function LoginPage() {
               type="button"
               onClick={handleGoogleLogin}
               disabled={busy}
-              className="flex h-12 w-full items-center justify-center gap-2.5 rounded-full border border-white/10 bg-white/[0.04] text-sm text-emerald-50/80 transition hover:bg-white/[0.07] disabled:opacity-60"
+              className="flex h-12 w-full items-center justify-center gap-2.5 rounded-full border border-line bg-surface text-sm text-ink transition hover:bg-surface-strong disabled:opacity-60"
             >
               Continue with Google
             </button>
 
             {/* Register Link */}
-            <p className="mt-7 text-center text-sm text-emerald-100/45">
+            <p className="mt-7 text-center text-sm text-ink-muted">
               Don&apos;t have an account?{" "}
               <Link
                 href="/register"
-                className="font-medium text-emerald-300 hover:text-emerald-200"
+                className="font-medium text-accent hover:text-accent-soft"
               >
                 Register
               </Link>

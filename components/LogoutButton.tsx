@@ -39,7 +39,7 @@ export default function LogoutButton() {
         type="button"
         onClick={handleLogout}
         disabled={loading}
-        className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-full border border-rose-300/25 bg-rose-500/10 px-5 text-sm font-semibold text-rose-200/90 transition-colors hover:border-rose-300/40 hover:bg-rose-500/15 hover:text-rose-100 focus-visible:ring-2 focus-visible:ring-rose-300/40 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-60 sm:w-auto"
+        className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-full border border-danger-line/25 bg-danger-surface/10 px-5 text-sm font-semibold text-danger/90 transition-colors hover:border-danger-line/40 hover:bg-danger-surface/15 hover:text-danger-bright focus-visible:ring-2 focus-visible:ring-danger-line/40 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-60 sm:w-auto"
       >
         {loading ? (
           <Loader2 className="size-4 animate-spin" />
@@ -50,7 +50,7 @@ export default function LogoutButton() {
       </button>
 
       {error && (
-        <p role="alert" className="mt-2 text-xs text-rose-300/90">
+        <p role="alert" className="mt-2 text-xs text-danger-soft/90">
           {error}
         </p>
       )}

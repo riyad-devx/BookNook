@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 function BannerFallback() {
   return (
     <section className="w-full pt-2 sm:pt-3">
-      <div className="h-[520px] w-full animate-pulse bg-[#03100a] sm:h-[560px] lg:h-[600px]" />
+      <div className="h-[520px] w-full animate-pulse bg-page-alt sm:h-[560px] lg:h-[600px]" />
     </section>
   );
 }

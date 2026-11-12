@@ -4,7 +4,7 @@ export default function Loading() {
       <div className="relative flex items-center justify-center">
         <div className="h-16 w-16 rounded-2xl bg-green-900 flex items-center justify-center shadow-lg animate-pulse">
           <svg
-            className="h-8 w-8 text-white"
+            className="h-8 w-8 text-heading"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"

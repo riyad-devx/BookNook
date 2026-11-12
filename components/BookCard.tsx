@@ -29,9 +29,9 @@ export default function BookCard({
 }: BookCardProps) {
   return (
     <article
-      className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-[#06120d]/80 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-200/25 hover:shadow-[0_24px_60px_-30px_rgba(16,185,129,0.45)] ${className}`}
+      className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line-soft bg-panel/80 transition-all duration-300 hover:-translate-y-1 hover:border-accent-line/25 hover:shadow-[0_24px_60px_-30px_rgba(16,185,129,0.45)] ${className}`}
     >
-      <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#04110b]">
+      <div className="relative aspect-[3/4] w-full overflow-hidden bg-page">
         {book.image ? (
           <Image
             src={book.image}
@@ -42,31 +42,31 @@ export default function BookCard({
             className="object-cover transition-transform duration-700 group-hover:scale-105"
           />
         ) : (
-          <div className="grid h-full w-full place-items-center text-emerald-200/25">
+          <div className="grid h-full w-full place-items-center text-accent-dim">
             <BookOpen className="size-7" />
           </div>
         )}
 
-        <div className="absolute inset-0 bg-gradient-to-t from-[#04110b] via-[#04110b]/15 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-page via-page/15 to-transparent" />
 
-        <span className="absolute top-2.5 left-2.5 inline-flex items-center rounded-full border border-emerald-200/20 bg-[#04110b]/70 px-2.5 py-1 text-[10px] font-semibold tracking-[0.16em] text-emerald-200/80 uppercase backdrop-blur-sm">
+        <span className="absolute top-2.5 left-2.5 inline-flex items-center rounded-full border border-accent-line/20 bg-page/70 px-2.5 py-1 text-[10px] font-semibold tracking-[0.16em] text-accent-soft uppercase backdrop-blur-sm">
           {book.category}
         </span>
       </div>
 
       <div className="flex flex-1 flex-col p-3.5">
-        <h2 className="line-clamp-2 min-h-[3.1rem] font-heading text-lg leading-snug font-semibold tracking-[-0.02em] text-[#f5f2e8]">
+        <h2 className="line-clamp-2 min-h-[3.1rem] font-heading text-lg leading-snug font-semibold tracking-[-0.02em] text-heading">
           {book.title}
         </h2>
-        <p className="mt-1 text-[13px] text-emerald-100/45">by {book.author}</p>
+        <p className="mt-1 text-[13px] text-ink-muted">by {book.author}</p>
 
         <div className="mt-auto pt-3.5">
           <Link
             href={href}
-            className="group/button inline-flex h-9 w-full items-center justify-between gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3.5 text-[13px] font-medium text-emerald-100/70 transition-colors hover:border-emerald-200/30 hover:bg-emerald-300/10 hover:text-emerald-100 focus-visible:ring-2 focus-visible:ring-emerald-300/50 focus-visible:outline-none"
+            className="group/button inline-flex h-9 w-full items-center justify-between gap-2 rounded-full border border-line bg-surface px-3.5 text-[13px] font-medium text-ink-soft transition-colors hover:border-accent-line/30 hover:bg-accent/10 hover:text-ink focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:outline-none"
           >
             View Details
-            <ArrowUpRight className="size-3.5 text-emerald-200/50 transition-transform duration-300 group-hover/button:-translate-y-0.5 group-hover/button:translate-x-0.5 group-hover/button:text-emerald-300" />
+            <ArrowUpRight className="size-3.5 text-accent-faint transition-transform duration-300 group-hover/button:-translate-y-0.5 group-hover/button:translate-x-0.5 group-hover/button:text-accent" />
           </Link>
         </div>
       </div>
@@ -77,13 +77,13 @@ export default function BookCard({
 export function BookCardSkeleton({ className = "" }: { className?: string }) {
   return (
     <div
-      className={`animate-pulse overflow-hidden rounded-2xl border border-white/[0.06] bg-[#06120d]/60 ${className}`}
+      className={`animate-pulse overflow-hidden rounded-2xl border border-line-soft bg-panel/60 ${className}`}
     >
-      <div className="aspect-[3/4] w-full bg-white/[0.04]" />
+      <div className="aspect-[3/4] w-full bg-surface" />
       <div className="space-y-3 p-3.5">
-        <div className="h-4 w-3/4 rounded-full bg-white/[0.06]" />
-        <div className="h-3 w-1/2 rounded-full bg-white/[0.04]" />
-        <div className="h-9 w-full rounded-xl bg-white/[0.04]" />
+        <div className="h-4 w-3/4 rounded-full bg-surface-strong" />
+        <div className="h-3 w-1/2 rounded-full bg-surface" />
+        <div className="h-9 w-full rounded-xl bg-surface" />
       </div>
     </div>
   );

@@ -13,27 +13,27 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <main className="min-w-0 flex-1">
-      <section className="relative flex w-full items-center justify-center overflow-hidden bg-[#04110b] px-4 py-20 sm:px-6 sm:py-24">
+      <section className="relative flex w-full items-center justify-center overflow-hidden bg-page px-4 py-20 sm:px-6 sm:py-24">
         <div aria-hidden className="pointer-events-none absolute inset-0">
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-300/35 to-transparent" />
           <div className="absolute -top-28 left-1/2 size-[26rem] -translate-x-1/2 rounded-full bg-emerald-500/[0.12] blur-[110px]" />
         </div>
 
         <div className="relative flex max-w-md flex-col items-center text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200/20 bg-emerald-300/10 px-3 py-1 text-[10px] font-semibold tracking-[0.28em] text-emerald-200/90 uppercase">
+          <span className="inline-flex items-center gap-2 rounded-full border border-accent-line/20 bg-accent/10 px-3 py-1 text-[10px] font-semibold tracking-[0.28em] text-accent-soft uppercase">
             <BookOpen className="size-3" />
             Error 404
           </span>
 
-          <p className="mt-6 font-heading text-6xl font-semibold tracking-[-0.04em] text-emerald-200/20 sm:text-7xl">
+          <p className="mt-6 font-heading text-6xl font-semibold tracking-[-0.04em] text-accent-dim sm:text-7xl">
             404
           </p>
 
-          <h1 className="mt-2 font-heading text-3xl font-semibold tracking-[-0.03em] text-[#f7f4e9] sm:text-4xl">
+          <h1 className="mt-2 font-heading text-3xl font-semibold tracking-[-0.03em] text-heading sm:text-4xl">
             This page is missing
           </h1>
 
-          <p className="mt-3 text-sm leading-6 text-emerald-50/55">
+          <p className="mt-3 text-sm leading-6 text-ink-soft">
             The page you are looking for was moved or never existed. It is not on
             the BookNook shelves.
           </p>
@@ -41,7 +41,7 @@ export default function NotFound() {
           <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row">
             <Link
               href="/"
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-emerald-300 via-emerald-400 to-lime-300 px-5 text-sm font-semibold text-emerald-950 shadow-[0_18px_40px_-16px_rgba(52,211,153,0.9)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_50px_-16px_rgba(52,211,153,1)] focus-visible:ring-2 focus-visible:ring-emerald-200/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#04110b] focus-visible:outline-none"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-emerald-300 via-emerald-400 to-lime-300 px-5 text-sm font-semibold text-emerald-950 shadow-[0_18px_40px_-16px_rgba(52,211,153,0.9)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_50px_-16px_rgba(52,211,153,1)] focus-visible:ring-2 focus-visible:ring-accent-line/70 focus-visible:ring-offset-2 focus-visible:ring-offset-page focus-visible:outline-none"
             >
               <Home className="size-4" />
               Back to Home
@@ -49,7 +49,7 @@ export default function NotFound() {
 
             <Link
               href="/books"
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 text-sm font-medium text-emerald-100/70 transition-colors hover:border-emerald-200/30 hover:bg-emerald-300/10 hover:text-emerald-100 focus-visible:ring-2 focus-visible:ring-emerald-300/50 focus-visible:outline-none"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-line bg-surface px-5 text-sm font-medium text-ink-soft transition-colors hover:border-accent-line/30 hover:bg-accent/10 hover:text-ink focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:outline-none"
             >
               <LibraryBig className="size-4" />
               Browse all books

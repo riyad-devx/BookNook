@@ -72,7 +72,7 @@ export default function BookBanner() {
       aria-label="Featured books"
       className="w-full min-w-0 pt-2 sm:pt-3"
     >
-      <div className="relative overflow-hidden bg-[#03100a]">
+      <div className="relative overflow-hidden bg-page-alt">
         <div className="pointer-events-none absolute inset-x-12 top-0 z-20 h-px bg-gradient-to-r from-transparent via-emerald-200/40 to-transparent" />
 
         <Swiper
@@ -104,28 +104,28 @@ export default function BookBanner() {
                 className="object-cover"
               />
 
-              <div className="absolute inset-0 bg-[#03100a]/20" />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#03100a]/95 via-[#03100a]/65 to-[#03100a]/5" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#03100a]/80 via-transparent to-[#03100a]/10" />
+              <div className="absolute inset-0 bg-page-alt/20" />
+              <div className="absolute inset-0 bg-gradient-to-r from-page-alt/95 via-page-alt/65 to-page-alt/5" />
+              <div className="absolute inset-0 bg-gradient-to-t from-page-alt/80 via-transparent to-page-alt/10" />
 
               <div className="relative z-10 flex h-full min-w-0 items-center px-6 pt-10 pb-28 sm:px-10 lg:px-16">
                 <div className="w-full min-w-0 max-w-2xl">
-                  <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200/20 bg-emerald-300/10 px-3 py-1 text-[10px] font-semibold tracking-[0.28em] text-emerald-200/90 uppercase backdrop-blur-sm">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-accent-line/20 bg-accent/10 px-3 py-1 text-[10px] font-semibold tracking-[0.28em] text-accent-soft uppercase backdrop-blur-sm">
                     <Sparkles className="size-3" />
                     {slide.eyebrow}
                   </span>
 
-                  <h1 className="mt-5 max-w-2xl text-balance font-heading text-4xl leading-[1.02] font-semibold tracking-[-0.04em] text-[#f7f4e9] sm:text-5xl lg:text-6xl xl:text-7xl">
+                  <h1 className="mt-5 max-w-2xl text-balance font-heading text-4xl leading-[1.02] font-semibold tracking-[-0.04em] text-heading sm:text-5xl lg:text-6xl xl:text-7xl">
                     {slide.title}
                   </h1>
 
-                  <p className="mt-5 max-w-lg text-sm leading-6 text-emerald-50/65 sm:text-base sm:leading-7">
+                  <p className="mt-5 max-w-lg text-sm leading-6 text-ink-soft sm:text-base sm:leading-7">
                     {slide.text}
                   </p>
 
                   <Link
                     href="/books"
-                    className="group relative mt-8 inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-emerald-300 via-emerald-400 to-lime-300 px-6 py-3 text-sm font-semibold text-emerald-950 shadow-[0_18px_40px_-16px_rgba(52,211,153,0.9)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_50px_-16px_rgba(52,211,153,1)] focus-visible:ring-2 focus-visible:ring-emerald-200/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#03100a] focus-visible:outline-none"
+                    className="group relative mt-8 inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-emerald-300 via-emerald-400 to-lime-300 px-6 py-3 text-sm font-semibold text-emerald-950 shadow-[0_18px_40px_-16px_rgba(52,211,153,0.9)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_50px_-16px_rgba(52,211,153,1)] focus-visible:ring-2 focus-visible:ring-accent-line/70 focus-visible:ring-offset-2 focus-visible:ring-offset-page-alt focus-visible:outline-none"
                   >
                     <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
                     <BookOpen className="relative size-4" />
@@ -148,19 +148,19 @@ export default function BookBanner() {
                 aria-label={`Go to slide ${index + 1}: ${slide.title}`}
                 aria-current={activeIndex === index ? "true" : undefined}
                 className={cn(
-                  "h-1.5 rounded-full transition-all duration-500 focus-visible:ring-2 focus-visible:ring-emerald-200/70 focus-visible:outline-none",
+                  "h-1.5 rounded-full transition-all duration-500 focus-visible:ring-2 focus-visible:ring-accent-line/70 focus-visible:outline-none",
                   activeIndex === index
-                    ? "w-8 bg-emerald-300 shadow-[0_0_12px_rgba(110,231,183,0.8)]"
-                    : "w-3 bg-white/25 hover:bg-white/45"
+                    ? "w-8 bg-accent shadow-[0_0_12px_rgba(110,231,183,0.8)]"
+                    : "w-3 bg-heading/25 hover:bg-heading/45"
                 )}
               />
             ))}
           </div>
 
           <div className="pointer-events-auto flex items-center gap-3">
-            <span className="text-[10px] font-semibold tracking-[0.3em] text-white/45">
+            <span className="text-[10px] font-semibold tracking-[0.3em] text-heading/45">
               {String(activeIndex + 1).padStart(2, "0")}
-              <span className="mx-1 text-white/20">/</span>
+              <span className="mx-1 text-heading/20">/</span>
               {String(SLIDES.length).padStart(2, "0")}
             </span>
 
@@ -169,7 +169,7 @@ export default function BookBanner() {
                 type="button"
                 onClick={() => swiper?.slidePrev()}
                 aria-label="Previous slide"
-                className="grid size-10 place-items-center rounded-full border border-white/15 bg-black/20 text-white/70 backdrop-blur-md transition-all duration-300 hover:border-emerald-200/40 hover:bg-emerald-300/15 hover:text-emerald-100 focus-visible:ring-2 focus-visible:ring-emerald-200/70 focus-visible:outline-none"
+                className="grid size-10 place-items-center rounded-full border border-line-strong bg-panel/40 text-heading/70 backdrop-blur-md transition-all duration-300 hover:border-accent-line/40 hover:bg-accent/15 hover:text-ink focus-visible:ring-2 focus-visible:ring-accent-line/70 focus-visible:outline-none"
               >
                 <ArrowLeft className="size-4" />
               </button>
@@ -177,7 +177,7 @@ export default function BookBanner() {
                 type="button"
                 onClick={() => swiper?.slideNext()}
                 aria-label="Next slide"
-                className="grid size-10 place-items-center rounded-full border border-white/15 bg-black/20 text-white/70 backdrop-blur-md transition-all duration-300 hover:border-emerald-200/40 hover:bg-emerald-300/15 hover:text-emerald-100 focus-visible:ring-2 focus-visible:ring-emerald-200/70 focus-visible:outline-none"
+                className="grid size-10 place-items-center rounded-full border border-line-strong bg-panel/40 text-heading/70 backdrop-blur-md transition-all duration-300 hover:border-accent-line/40 hover:bg-accent/15 hover:text-ink focus-visible:ring-2 focus-visible:ring-accent-line/70 focus-visible:outline-none"
               >
                 <ArrowRight className="size-4" />
               </button>

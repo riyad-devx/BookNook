@@ -24,8 +24,20 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={cn("h-full", "antialiased", "font-sans", nationalPark.variable, frauncesHeading.variable)}
     >
+      <head>
+        {/*
+          Applies the saved theme before the browser paints, so the page never
+          flashes the wrong theme. Keep the key in sync with components/Navber.tsx.
+        */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var k="booknook-theme";var s=localStorage.getItem(k);var d=s?s==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches;document.documentElement.classList.toggle("dark",d)}catch(e){}})()`,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col">
         <Navber />
         {children}

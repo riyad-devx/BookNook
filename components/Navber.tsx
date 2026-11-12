@@ -74,9 +74,9 @@ function ProfileAvatar({
   className?: string;
 }) {
   return (
-    <Avatar className={cn("size-9 border border-emerald-200/20", className)}>
+    <Avatar className={cn("size-9 border border-accent-line/20", className)}>
       <AvatarImage src={image ?? undefined} alt={name} />
-      <AvatarFallback className="bg-emerald-300/10 text-[11px] font-semibold tracking-wide text-emerald-200">
+      <AvatarFallback className="bg-accent/10 text-[11px] font-semibold tracking-wide text-accent-soft">
         {getInitials(name)}
       </AvatarFallback>
     </Avatar>
@@ -154,7 +154,7 @@ function ThemeToggle({
       type="button"
       onClick={onToggle}
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
-      className="relative grid size-9 place-items-center rounded-full border border-white/10 bg-white/[0.04] text-emerald-100/70 transition-all duration-300 hover:border-emerald-200/25 hover:bg-emerald-300/10 hover:text-emerald-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/50"
+      className="relative grid size-9 place-items-center rounded-full border border-line bg-surface text-ink-soft transition-all duration-300 hover:border-accent-line/25 hover:bg-accent/10 hover:text-accent-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
     >
       <Sun
         className={cn(
@@ -186,16 +186,16 @@ function DesktopNavLink({ item, active }: { item: NavItem; active: boolean }) {
       className={cn(
         "group relative flex items-center gap-2 rounded-full px-3.5 py-2 text-[13px] font-medium tracking-[0.01em] transition-colors duration-300",
         active
-          ? "text-[#f4f7ef]"
-          : "text-emerald-100/60 hover:text-emerald-50"
+          ? "text-heading"
+          : "text-ink-soft hover:text-heading"
       )}
     >
       <span
         className={cn(
           "absolute inset-0 rounded-full transition-all duration-300",
           active
-            ? "bg-gradient-to-b from-emerald-300/15 via-emerald-400/10 to-transparent shadow-[0_10px_30px_-14px_rgba(52,211,153,0.9)] ring-1 ring-emerald-200/20 ring-inset"
-            : "bg-transparent group-hover:bg-white/[0.045]"
+            ? "bg-gradient-to-b from-emerald-300/15 via-emerald-400/10 to-transparent shadow-[0_10px_30px_-14px_rgba(52,211,153,0.9)] ring-1 ring-accent-line/20 ring-inset"
+            : "bg-transparent group-hover:bg-surface-strong"
         )}
       />
       <span className="relative flex items-center gap-2">
@@ -203,8 +203,8 @@ function DesktopNavLink({ item, active }: { item: NavItem; active: boolean }) {
           className={cn(
             "size-4 transition-all duration-300 group-hover:-translate-y-0.5",
             active
-              ? "text-emerald-300"
-              : "text-emerald-200/45 group-hover:text-emerald-200"
+              ? "text-accent"
+              : "text-accent-faint group-hover:text-accent-soft"
           )}
           strokeWidth={active ? 2.2 : 1.8}
         />
@@ -212,7 +212,7 @@ function DesktopNavLink({ item, active }: { item: NavItem; active: boolean }) {
       </span>
       <span
         className={cn(
-          "absolute -bottom-1 left-1/2 h-px -translate-x-1/2 rounded-full bg-emerald-300 shadow-[0_0_10px_2px_rgba(110,231,183,0.55)] transition-all duration-300",
+          "absolute -bottom-1 left-1/2 h-px -translate-x-1/2 rounded-full bg-accent shadow-[0_0_10px_2px_rgba(110,231,183,0.55)] transition-all duration-300",
           active
             ? "w-6 opacity-100"
             : "w-0 opacity-0 group-hover:w-3 group-hover:opacity-60"
@@ -241,26 +241,26 @@ function MobileNavLink({
       className={cn(
         "group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors duration-300",
         active
-          ? "text-emerald-50"
-          : "text-emerald-100/65 hover:bg-white/[0.045] hover:text-emerald-50"
+          ? "text-heading"
+          : "text-ink-soft hover:bg-surface-strong hover:text-heading"
       )}
     >
       {active && (
-        <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-emerald-400/15 to-transparent ring-1 ring-emerald-200/15 ring-inset" />
+        <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-emerald-400/15 to-transparent ring-1 ring-accent-line/15 ring-inset" />
       )}
       <span
         className={cn(
           "relative grid size-8 place-items-center rounded-lg border transition-colors duration-300",
           active
-            ? "border-emerald-300/20 bg-emerald-300/10 text-emerald-300"
-            : "border-white/[0.06] bg-white/[0.03] text-emerald-200/50 group-hover:text-emerald-200"
+            ? "border-accent/20 bg-accent/10 text-accent"
+            : "border-line-soft bg-surface text-accent-faint group-hover:text-accent-soft"
         )}
       >
         <Icon className="size-4" />
       </span>
       <span className="relative">{item.label}</span>
       {active && (
-        <span className="relative ml-auto size-1.5 rounded-full bg-emerald-300 shadow-[0_0_8px_2px_rgba(110,231,183,0.6)]" />
+        <span className="relative ml-auto size-1.5 rounded-full bg-accent shadow-[0_0_8px_2px_rgba(110,231,183,0.6)]" />
       )}
     </Link>
   );
@@ -289,7 +289,7 @@ export default function Navber({
 
   return (
     <header className="sticky top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4 lg:px-6">
-      <div className="relative mx-auto max-w-7xl rounded-[1.65rem] border border-white/[0.09] bg-[#06120d]/80 shadow-[0_24px_70px_-24px_rgba(0,0,0,0.85),inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-2xl supports-[backdrop-filter]:bg-[#06120d]/70">
+      <div className="relative mx-auto max-w-7xl rounded-[1.65rem] border border-line-soft bg-panel/80 shadow-[0_24px_70px_-24px_rgba(0,0,0,0.85),inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-2xl supports-[backdrop-filter]:bg-panel/70">
         <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit]">
           <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-emerald-200/40 to-transparent" />
           <div className="absolute top-1/2 -left-24 size-64 -translate-y-1/2 rounded-full bg-emerald-500/10 blur-3xl" />
@@ -301,17 +301,17 @@ export default function Navber({
             href="/"
             onClick={closeMobile}
             aria-label="BookNook home"
-            className="group flex min-w-0 items-center gap-2.5 rounded-full focus-visible:ring-2 focus-visible:ring-emerald-300/50 focus-visible:outline-none"
+            className="group flex min-w-0 items-center gap-2.5 rounded-full focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:outline-none"
           >
             <span className="relative grid size-10 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-emerald-200 via-emerald-400 to-teal-700 shadow-[0_10px_24px_-8px_rgba(16,185,129,0.7),inset_0_1px_0_rgba(255,255,255,0.45)] transition-all duration-500 group-hover:-rotate-6 group-hover:scale-105">
               <BookOpen className="size-5 text-[#04110b]" strokeWidth={2.4} />
-              <span className="absolute -top-1 -right-1 size-2.5 rounded-full border-2 border-[#06120d] bg-lime-300 shadow-[0_0_10px_2px_rgba(190,242,100,0.7)]" />
+              <span className="absolute -top-1 -right-1 size-2.5 rounded-full border-2 border-panel bg-lime-300 shadow-[0_0_10px_2px_rgba(190,242,100,0.7)]" />
             </span>
             <span className="flex min-w-0 flex-col leading-none">
-              <span className="truncate font-heading text-[1.35rem] font-semibold tracking-[-0.03em] text-[#f5f2e8]">
-                Book<span className="text-emerald-300">Nook</span>
+              <span className="truncate font-heading text-[1.35rem] font-semibold tracking-[-0.03em] text-heading">
+                Book<span className="text-accent">Nook</span>
               </span>
-              <span className="mt-1 text-[8px] font-semibold tracking-[0.34em] text-emerald-200/45 uppercase">
+              <span className="mt-1 text-[8px] font-semibold tracking-[0.34em] text-accent-faint uppercase">
                 Digital Library
               </span>
             </span>
@@ -337,14 +337,14 @@ export default function Navber({
               {isPending ? (
                 <span
                   aria-hidden
-                  className="size-9 animate-pulse rounded-full border border-white/10 bg-white/[0.06]"
+                  className="size-9 animate-pulse rounded-full border border-line bg-surface-strong"
                 />
               ) : user ? (
                 <Link
                   href="/profile"
                   aria-label="My profile"
                   title="My profile"
-                  className="group rounded-full ring-2 ring-emerald-300/0 transition-all hover:ring-emerald-300/35 focus-visible:ring-emerald-300/60 focus-visible:outline-none"
+                  className="group rounded-full ring-2 ring-accent/0 transition-all hover:ring-accent/35 focus-visible:ring-accent/60 focus-visible:outline-none"
                 >
                   <ProfileAvatar name={user.name} image={user.image} />
                 </Link>
@@ -352,14 +352,14 @@ export default function Navber({
                 <>
                   <Link
                     href={loginHref}
-                    className="group inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium text-emerald-100/70 transition-colors hover:text-emerald-50 focus-visible:ring-2 focus-visible:ring-emerald-300/50 focus-visible:outline-none"
+                    className="group inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium text-ink-soft transition-colors hover:text-heading focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:outline-none"
                   >
-                    <LogIn className="size-4 text-emerald-200/50 transition-colors group-hover:text-emerald-300" />
+                    <LogIn className="size-4 text-accent-faint transition-colors group-hover:text-accent" />
                     Login
                   </Link>
                   <Link
                     href={registerHref}
-                    className="group relative inline-flex items-center gap-1.5 overflow-hidden rounded-full bg-gradient-to-r from-emerald-300 via-emerald-400 to-lime-300 px-4 py-2 text-sm font-semibold text-emerald-950 shadow-[0_10px_28px_-12px_rgba(52,211,153,0.8)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_34px_-12px_rgba(52,211,153,0.95)] focus-visible:ring-2 focus-visible:ring-emerald-200/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#06120d] focus-visible:outline-none"
+                    className="group relative inline-flex items-center gap-1.5 overflow-hidden rounded-full bg-gradient-to-r from-emerald-300 via-emerald-400 to-lime-300 px-4 py-2 text-sm font-semibold text-emerald-950 shadow-[0_10px_28px_-12px_rgba(52,211,153,0.8)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_34px_-12px_rgba(52,211,153,0.95)] focus-visible:ring-2 focus-visible:ring-accent-line/70 focus-visible:ring-offset-2 focus-visible:ring-offset-panel focus-visible:outline-none"
                   >
                     <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/35 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
                     <UserPlus className="relative size-4" />
@@ -375,7 +375,7 @@ export default function Navber({
                 onClick={closeMobile}
                 aria-label="My profile"
                 title="My profile"
-                className="group rounded-full ring-2 ring-emerald-300/0 transition-all hover:ring-emerald-300/35 focus-visible:ring-emerald-300/60 focus-visible:outline-none lg:hidden"
+                className="group rounded-full ring-2 ring-accent/0 transition-all hover:ring-accent/35 focus-visible:ring-accent/60 focus-visible:outline-none lg:hidden"
               >
                 <ProfileAvatar
                   name={user.name}
@@ -395,7 +395,7 @@ export default function Navber({
                   ? "Close navigation menu"
                   : "Open navigation menu"
               }
-              className="relative grid size-9 place-items-center rounded-full border border-white/10 bg-white/[0.04] text-emerald-100/80 transition-all duration-300 hover:border-emerald-200/25 hover:bg-emerald-300/10 hover:text-emerald-200 focus-visible:ring-2 focus-visible:ring-emerald-300/50 focus-visible:outline-none lg:hidden"
+              className="relative grid size-9 place-items-center rounded-full border border-line bg-surface text-ink-soft transition-all duration-300 hover:border-accent-line/25 hover:bg-accent/10 hover:text-accent-soft focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:outline-none lg:hidden"
             >
               <Menu
                 className={cn(
@@ -429,7 +429,7 @@ export default function Navber({
           )}
         >
           <div className="min-h-0 overflow-hidden">
-            <div className="border-t border-white/[0.07] px-3 pt-3 pb-3">
+            <div className="border-t border-line-soft px-3 pt-3 pb-3">
               <nav
                 aria-label="Mobile navigation"
                 className="flex flex-col gap-1"
@@ -445,11 +445,11 @@ export default function Navber({
               </nav>
 
               {!isPending && !user && (
-                <div className="mt-3 grid grid-cols-2 gap-2 border-t border-white/[0.07] pt-3">
+                <div className="mt-3 grid grid-cols-2 gap-2 border-t border-line-soft pt-3">
                   <Link
                     href={loginHref}
                     onClick={closeMobile}
-                    className="flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-2.5 text-sm font-medium text-emerald-100/80 transition-colors hover:bg-white/[0.07] hover:text-emerald-50"
+                    className="flex items-center justify-center gap-2 rounded-full border border-line bg-surface px-3 py-2.5 text-sm font-medium text-ink-soft transition-colors hover:bg-surface-strong hover:text-heading"
                   >
                     <LogIn className="size-4" />
                     Login

@@ -117,7 +117,7 @@ export default function Footer() {
   const footerLinks = session?.user ? MEMBER_LINKS : GUEST_LINKS;
 
   return (
-    <footer className="relative mt-auto w-full overflow-hidden border-t border-emerald-200/10 bg-[#04110b]">
+    <footer className="relative mt-auto w-full overflow-hidden border-t border-accent-line/10 bg-page">
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-300/35 to-transparent" />
         <div className="absolute -top-40 -left-24 size-[26rem] rounded-full bg-emerald-500/[0.09] blur-[110px]" />
@@ -131,41 +131,41 @@ export default function Footer() {
             <Link
               href="/"
               aria-label="BookNook home"
-              className="group inline-flex items-center gap-2.5 rounded-full focus-visible:ring-2 focus-visible:ring-emerald-300/50 focus-visible:outline-none"
+              className="group inline-flex items-center gap-2.5 rounded-full focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:outline-none"
             >
               <span className="relative grid size-10 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-emerald-200 via-emerald-400 to-teal-700 shadow-[0_10px_24px_-8px_rgba(16,185,129,0.7),inset_0_1px_0_rgba(255,255,255,0.45)] transition-all duration-500 group-hover:-rotate-6 group-hover:scale-105">
                 <BookOpen className="size-5 text-[#04110b]" strokeWidth={2.4} />
-                <span className="absolute -top-1 -right-1 size-2.5 rounded-full border-2 border-[#04110b] bg-lime-300 shadow-[0_0_10px_2px_rgba(190,242,100,0.7)]" />
+                <span className="absolute -top-1 -right-1 size-2.5 rounded-full border-2 border-page bg-lime-300 shadow-[0_0_10px_2px_rgba(190,242,100,0.7)]" />
               </span>
               <span className="flex flex-col leading-none">
-                <span className="font-heading text-[1.35rem] font-semibold tracking-[-0.03em] text-[#f5f2e8]">
-                  Book<span className="text-emerald-300">Nook</span>
+                <span className="font-heading text-[1.35rem] font-semibold tracking-[-0.03em] text-heading">
+                  Book<span className="text-accent">Nook</span>
                 </span>
-                <span className="mt-1 text-[8px] font-semibold tracking-[0.34em] text-emerald-200/45 uppercase">
+                <span className="mt-1 text-[8px] font-semibold tracking-[0.34em] text-accent-faint uppercase">
                   Digital Library
                 </span>
               </span>
             </Link>
 
-            <p className="mt-5 max-w-sm text-sm leading-6 text-emerald-50/55">
+            <p className="mt-5 max-w-sm text-sm leading-6 text-ink-soft">
               A quiet corner of the internet for readers. Borrow books for
               fourteen days, keep your shelf organised, and always have something
               good waiting on the next page.
             </p>
 
             <div className="mt-6 flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200/15 bg-emerald-300/[0.07] px-3 py-1 text-[10px] font-semibold tracking-[0.18em] text-emerald-200/80 uppercase">
-                <span className="size-1.5 rounded-full bg-emerald-300 shadow-[0_0_8px_2px_rgba(110,231,183,0.7)]" />
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-accent-line/15 bg-accent/[0.07] px-3 py-1 text-[10px] font-semibold tracking-[0.18em] text-accent-soft uppercase">
+                <span className="size-1.5 rounded-full bg-accent shadow-[0_0_8px_2px_rgba(110,231,183,0.7)]" />
                 Open 24 / 7
               </span>
-              <span className="inline-flex items-center rounded-full border border-white/[0.07] bg-white/[0.03] px-3 py-1 text-[10px] font-semibold tracking-[0.18em] text-emerald-100/45 uppercase">
+              <span className="inline-flex items-center rounded-full border border-line-soft bg-surface px-3 py-1 text-[10px] font-semibold tracking-[0.18em] text-ink-muted uppercase">
                 No late fees
               </span>
             </div>
           </div>
 
           <div className="min-w-0">
-            <h2 className="text-[11px] font-semibold tracking-[0.28em] text-emerald-200/60 uppercase">
+            <h2 className="text-[11px] font-semibold tracking-[0.28em] text-accent-soft uppercase">
               Contact
             </h2>
             <ul className="mt-5 space-y-4">
@@ -176,13 +176,13 @@ export default function Footer() {
                   <li key={item.label}>
                     <a
                       href={item.href}
-                      className="group flex items-start gap-3 rounded-xl text-sm text-emerald-50/55 transition-colors hover:text-emerald-50 focus-visible:ring-2 focus-visible:ring-emerald-300/50 focus-visible:outline-none"
+                      className="group flex items-start gap-3 rounded-xl text-sm text-ink-soft transition-colors hover:text-heading focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:outline-none"
                     >
-                      <span className="mt-0.5 grid size-8 shrink-0 place-items-center rounded-lg border border-white/[0.07] bg-white/[0.03] text-emerald-200/60 transition-colors group-hover:border-emerald-200/25 group-hover:bg-emerald-300/10 group-hover:text-emerald-300">
+                      <span className="mt-0.5 grid size-8 shrink-0 place-items-center rounded-lg border border-line-soft bg-surface text-accent-soft transition-colors group-hover:border-accent-line/25 group-hover:bg-accent/10 group-hover:text-accent">
                         <Icon className="size-4" />
                       </span>
                       <span className="min-w-0">
-                        <span className="block text-[10px] font-semibold tracking-[0.18em] text-emerald-200/35 uppercase">
+                        <span className="block text-[10px] font-semibold tracking-[0.18em] text-accent-dim uppercase">
                           {item.label}
                         </span>
                         <span className="mt-1 block leading-5 break-words">
@@ -197,7 +197,7 @@ export default function Footer() {
           </div>
 
           <div className="min-w-0">
-            <h2 className="text-[11px] font-semibold tracking-[0.28em] text-emerald-200/60 uppercase">
+            <h2 className="text-[11px] font-semibold tracking-[0.28em] text-accent-soft uppercase">
               Explore
             </h2>
             <ul className="mt-5 space-y-2.5">
@@ -205,9 +205,9 @@ export default function Footer() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="group inline-flex items-center gap-1.5 text-sm text-emerald-50/55 transition-colors hover:text-emerald-200 focus-visible:ring-2 focus-visible:ring-emerald-300/50 focus-visible:outline-none"
+                    className="group inline-flex items-center gap-1.5 text-sm text-ink-soft transition-colors hover:text-accent-soft focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:outline-none"
                   >
-                    <span className="h-px w-3 bg-emerald-300/30 transition-all duration-300 group-hover:w-5 group-hover:bg-emerald-300" />
+                    <span className="h-px w-3 bg-accent/30 transition-all duration-300 group-hover:w-5 group-hover:bg-accent" />
                     {item.label}
                     <ArrowUpRight className="size-3 opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-70" />
                   </Link>
@@ -215,7 +215,7 @@ export default function Footer() {
               ))}
             </ul>
 
-            <h2 className="mt-7 text-[11px] font-semibold tracking-[0.28em] text-emerald-200/60 uppercase">
+            <h2 className="mt-7 text-[11px] font-semibold tracking-[0.28em] text-accent-soft uppercase">
               Follow us
             </h2>
             <div className="mt-4 flex flex-wrap items-center gap-2">
@@ -229,7 +229,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noreferrer noopener"
                     aria-label={social.label}
-                    className="grid size-9 place-items-center rounded-full border border-white/10 bg-white/[0.03] text-emerald-100/55 transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-200/30 hover:bg-emerald-300/10 hover:text-emerald-200 focus-visible:ring-2 focus-visible:ring-emerald-300/50 focus-visible:outline-none"
+                    className="grid size-9 place-items-center rounded-full border border-line bg-surface text-ink-muted transition-all duration-300 hover:-translate-y-0.5 hover:border-accent-line/30 hover:bg-accent/10 hover:text-accent-soft focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:outline-none"
                   >
                     <Icon className="size-4" />
                   </a>
@@ -239,11 +239,11 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-white/[0.07] pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs tracking-[0.02em] text-emerald-100/40">
+        <div className="mt-12 flex flex-col gap-3 border-t border-line-soft pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs tracking-[0.02em] text-ink-faint">
             © {YEAR} BookNook. All rights reserved.
           </p>
-          <p className="text-xs tracking-[0.02em] text-emerald-100/30">
+          <p className="text-xs tracking-[0.02em] text-ink-faint">
             Built for readers, by readers.
           </p>
         </div>

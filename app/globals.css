@@ -46,10 +46,40 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  /* BookNook surfaces and text, themed via the .dark class. */
+  --color-page: var(--bk-page);
+  --color-page-alt: var(--bk-page-alt);
+  --color-panel: var(--bk-panel);
+  --color-surface: var(--bk-surface);
+  --color-surface-strong: var(--bk-surface-strong);
+  --color-surface-bright: var(--bk-surface-bright);
+  --color-surface-disabled: var(--bk-surface-disabled);
+  --color-line: var(--bk-line);
+  --color-line-soft: var(--bk-line-soft);
+  --color-line-strong: var(--bk-line-strong);
+  --color-heading: var(--bk-heading);
+  --color-ink: var(--bk-ink);
+  --color-ink-soft: var(--bk-ink-soft);
+  --color-ink-muted: var(--bk-ink-muted);
+  --color-ink-faint: var(--bk-ink-faint);
+  --color-accent: var(--bk-accent);
+  --color-accent-line: var(--bk-accent-line);
+  --color-accent-soft: var(--bk-accent-soft);
+  --color-accent-faint: var(--bk-accent-faint);
+  --color-accent-dim: var(--bk-accent-dim);
+  --color-danger: var(--bk-danger);
+  --color-danger-soft: var(--bk-danger-soft);
+  --color-danger-bright: var(--bk-danger-bright);
+  --color-danger-surface: var(--bk-danger-surface);
+  --color-danger-line: var(--bk-danger-line);
+  --color-danger-line-strong: var(--bk-danger-line-strong);
+  --color-warn: var(--bk-warn);
+  --color-warn-line: var(--bk-warn-line);
+  --color-warn-surface: var(--bk-warn-surface);
 }
 
 :root {
-  --background: oklch(1 0 0);
+  --background: var(--bk-page);
   --foreground: oklch(0.153 0.006 107.1);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.153 0.006 107.1);
@@ -81,6 +111,37 @@
   --sidebar-accent-foreground: oklch(0.228 0.013 107.4);
   --sidebar-border: oklch(0.93 0.007 106.5);
   --sidebar-ring: oklch(0.737 0.021 106.9);
+
+  /* Light theme: warm paper with the same emerald identity. */
+  --bk-page: #f8f6ee;
+  --bk-page-alt: #eef4ef;
+  --bk-panel: #ffffff;
+  --bk-surface: rgb(6 35 26 / 0.035);
+  --bk-surface-strong: rgb(6 35 26 / 0.06);
+  --bk-surface-bright: rgb(6 35 26 / 0.08);
+  --bk-surface-disabled: rgb(6 35 26 / 0.1);
+  --bk-line: rgb(6 35 26 / 0.14);
+  --bk-line-soft: rgb(6 35 26 / 0.09);
+  --bk-line-strong: rgb(6 35 26 / 0.22);
+  --bk-heading: #0b2a1e;
+  --bk-ink: #2c4a3d;
+  --bk-ink-soft: #47645a;
+  --bk-ink-muted: #62796e;
+  --bk-ink-faint: #8b9f95;
+  --bk-accent: #0c7a52;
+  --bk-accent-line: #1a5f49;
+  --bk-accent-soft: #12684a;
+  --bk-accent-faint: #3f7d63;
+  --bk-accent-dim: #7d9a8c;
+  --bk-danger: #9f1239;
+  --bk-danger-soft: #be123c;
+  --bk-danger-bright: #881337;
+  --bk-danger-surface: #e11d48;
+  --bk-danger-line: #be123c;
+  --bk-danger-line-strong: #9f1239;
+  --bk-warn: #92400e;
+  --bk-warn-line: #b45309;
+  --bk-warn-surface: #d97706;
 }
 
 .dark {
@@ -115,6 +176,37 @@
   --sidebar-accent-foreground: oklch(0.988 0.003 106.5);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.58 0.031 107.3);
+
+  /* Dark theme: the original BookNook palette, unchanged. */
+  --bk-page: #04110b;
+  --bk-page-alt: #03100a;
+  --bk-panel: #06120d;
+  --bk-surface: rgb(255 255 255 / 0.03);
+  --bk-surface-strong: rgb(255 255 255 / 0.06);
+  --bk-surface-bright: rgb(255 255 255 / 0.08);
+  --bk-surface-disabled: rgb(255 255 255 / 0.1);
+  --bk-line: rgb(255 255 255 / 0.1);
+  --bk-line-soft: rgb(255 255 255 / 0.07);
+  --bk-line-strong: rgb(255 255 255 / 0.18);
+  --bk-heading: #f7f4e9;
+  --bk-ink: rgb(236 253 245 / 0.84);
+  --bk-ink-soft: rgb(236 253 245 / 0.66);
+  --bk-ink-muted: rgb(236 253 245 / 0.46);
+  --bk-ink-faint: rgb(236 253 245 / 0.3);
+  --bk-accent: #6ee7b7;
+  --bk-accent-line: #a7f3d0;
+  --bk-accent-soft: rgb(167 243 208 / 0.8);
+  --bk-accent-faint: rgb(167 243 208 / 0.5);
+  --bk-accent-dim: rgb(167 243 208 / 0.32);
+  --bk-danger: #fecdd3;
+  --bk-danger-soft: #fda4af;
+  --bk-danger-bright: #ffe4e6;
+  --bk-danger-surface: #f43f5e;
+  --bk-danger-line: #fda4af;
+  --bk-danger-line-strong: #fb7185;
+  --bk-warn: #fde68a;
+  --bk-warn-line: #fcd34d;
+  --bk-warn-surface: #fbbf24;
 }
 
 @layer base {
