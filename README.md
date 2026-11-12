@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BookNook
 
-## Getting Started
+A dark, bookish digital library. Browse the shelves, borrow a book for fourteen days, and return it with one click.
 
-First, run the development server:
+Built with Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, and shadcn on Base UI.
+
+## Features
+
+- Email/password and Google sign-in with Better Auth, backed by MongoDB
+- Book catalog with search-ready grid, equal-height cards, and a details page with borrow dialog
+- "My Books" shelf: add, edit, and delete your own listings with stock tracking
+- "My Borrows": active borrows with a one-click return action
+- Profile page with inline name and photo editing
+- Cache Components build with per-route metadata, loading UI, and a custom 404 page
+- Incremental Shiki code highlighting for streamed content
+
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The app runs at http://localhost:3000 and expects the book API at http://localhost:5000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create a `.env` file in the project root:
 
-## Learn More
+| Variable | Purpose |
+| --- | --- |
+| `MONGODB_URL` | MongoDB connection string used by Better Auth |
+| `BETTER_AUTH_SECRET` | Signing secret for auth sessions |
+| `BETTER_AUTH_URL` | Public base URL of the app |
+| `GOOGLE_CLIENT_ID` | Google OAuth client ID |
+| `GOOGLE_CLIENT_SECRET` | Google OAuth client secret |
+| `BOOKS_API_URL` | Optional base URL of the book API (defaults to `http://localhost:5000`) |
 
-To learn more about Next.js, take a look at the following resources:
+## Scripts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `npm run dev` — start the development server
+- `npm run build` — production build
+- `npm start` — serve the production build
+- `npm run lint` — run ESLint
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Routes
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Route | Description |
+| --- | --- |
+| `/` | Hero banner, new arrivals, borrowing steps, top categories |
+| `/books` | Full catalog |
+| `/books/[id]` | Book details and borrow action |
+| `/add-books` | Add a book to the library |
+| `/my-books` | Manage your own listings |
+| `/my-borrows` | Track and return borrowed books |
+| `/profile` | Account details and profile editing |
+| `/login`, `/register` | Authentication pages |
