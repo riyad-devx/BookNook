@@ -17,6 +17,13 @@ const CARD_SKELETONS = Array.from({ length: 6 });
 // The books API the browser talks to directly.
 const API_BASE = process.env.NEXT_PUBLIC_BOOKS_API_URL ?? "http://localhost:5000";
 
+// The books API is a serverless function that connects to MongoDB on a cold
+// start. Without a timeout the browser would wait for the driver default of
+// thirty seconds before showing an error, so the request is given a deadline
+// and retried once.
+const REQUEST_TIMEOUT_MS = 10_000;
+const RETRY_DELAY_MS = 750;
+
 export default function AllBooksList() {
   const [books, setBooks] = useState<Book[]>([]);
   const [status, setStatus] = useState<Status>("loading");
@@ -25,19 +32,37 @@ export default function AllBooksList() {
     let cancelled = false;
 
     async function fetchBooks(): Promise<Book[]> {
-      const res = await fetch(`${API_BASE}/books`, {
-        cache: "no-store",
-      });
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 
-      if (!res.ok) {
-        throw new Error(`Failed to load books (${res.status})`);
+      try {
+        const res = await fetch(`${API_BASE}/books`, {
+          cache: "no-store",
+          signal: controller.signal,
+        });
+
+        if (!res.ok) {
+          throw new Error(`Failed to load books (${res.status})`);
+        }
+
+        const data = await res.json();
+        return Array.isArray(data) ? data : [];
+      } finally {
+        clearTimeout(timeout);
       }
-
-      const data = await res.json();
-      return Array.isArray(data) ? data : [];
     }
 
-    fetchBooks()
+    async function loadBooks(): Promise<Book[]> {
+      try {
+        return await fetchBooks();
+      } catch {
+        await new Promise((resolve) => setTimeout(resolve, RETRY_DELAY_MS));
+
+        return fetchBooks();
+      }
+    }
+
+    loadBooks()
       .then((data) => {
         if (cancelled) return;
 
