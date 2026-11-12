@@ -1,4 +1,5 @@
 import { auth } from "@/lib/auth";
+import { bearerAuth, getRequestToken } from "@/lib/api-auth";
 import { BOOKS_API_BASE } from "@/lib/books-api";
 
 /** Lists only the books owned by the signed-in user. */
@@ -12,11 +13,21 @@ export async function GET(request: Request) {
     );
   }
 
-  try {
-    const url = new URL(`${BOOKS_API_BASE}/my-books`);
-    url.searchParams.set("userId", session.user.id);
+  const token = await getRequestToken(request);
 
-    const response = await fetch(url, { cache: "no-store" });
+  if (!token) {
+    return Response.json(
+      { message: "You must be signed in to view your books." },
+      { status: 401 },
+    );
+  }
+
+  try {
+    // The backend reads the owner from the token.
+    const response = await fetch(`${BOOKS_API_BASE}/my-books`, {
+      headers: bearerAuth(token),
+      cache: "no-store",
+    });
     const data = await response.json().catch(() => null);
 
     return Response.json(

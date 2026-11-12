@@ -1,4 +1,5 @@
 import { auth } from "@/lib/auth";
+import { bearerAuth, getRequestToken } from "@/lib/api-auth";
 import { BOOKS_API_BASE } from "@/lib/books-api";
 
 type RouteParams = {
@@ -16,14 +17,22 @@ export async function POST(request: Request, { params }: RouteParams) {
     );
   }
 
+  const token = await getRequestToken(request);
+
+  if (!token) {
+    return Response.json(
+      { message: "You must be signed in to return a book." },
+      { status: 401 },
+    );
+  }
+
   try {
     const { id } = await params;
 
+    // The backend checks the borrower from the token.
     const response = await fetch(`${BOOKS_API_BASE}/borrows/${id}/return`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      // The backend checks this email against the borrow record owner.
-      body: JSON.stringify({ userEmail: session.user.email }),
+      headers: bearerAuth(token),
     });
 
     const data = await response.json().catch(() => null);

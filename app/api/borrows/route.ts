@@ -1,4 +1,5 @@
 import { auth } from "@/lib/auth";
+import { bearerAuth, getRequestToken } from "@/lib/api-auth";
 import { BOOKS_API_BASE } from "@/lib/books-api";
 
 /** Lists the signed-in user's own borrow records. */
@@ -12,12 +13,21 @@ export async function GET(request: Request) {
     );
   }
 
-  try {
-    const url = new URL(`${BOOKS_API_BASE}/borrows`);
-    // The email comes from the verified session, never from the client.
-    url.searchParams.set("userEmail", session.user.email);
+  const token = await getRequestToken(request);
 
-    const response = await fetch(url, { cache: "no-store" });
+  if (!token) {
+    return Response.json(
+      { message: "You must be signed in to view your borrows." },
+      { status: 401 },
+    );
+  }
+
+  try {
+    // The backend reads the borrower from the token.
+    const response = await fetch(`${BOOKS_API_BASE}/borrows`, {
+      headers: bearerAuth(token),
+      cache: "no-store",
+    });
     const data = await response.json().catch(() => null);
 
     return Response.json(
@@ -43,16 +53,23 @@ export async function POST(request: Request) {
     );
   }
 
+  const token = await getRequestToken(request);
+
+  if (!token) {
+    return Response.json(
+      { message: "You must be signed in to borrow a book." },
+      { status: 401 },
+    );
+  }
+
   try {
     const body = await request.json().catch(() => ({}));
 
+    // The backend reads the borrower from the token.
     const response = await fetch(`${BOOKS_API_BASE}/borrows`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        bookId: body?.bookId,
-        userEmail: session.user.email,
-      }),
+      headers: { "Content-Type": "application/json", ...bearerAuth(token) },
+      body: JSON.stringify({ bookId: body?.bookId }),
     });
 
     const data = await response.json().catch(() => null);

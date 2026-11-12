@@ -7,6 +7,8 @@ import BorrowBookButton from "@/components/BorrowBookButton";
 import { Toaster } from "@/components/ui/toast";
 import { getServerSession } from "@/lib/session";
 import type { Book } from "@/components/BookCard";
+import { headers } from "next/headers";
+import { auth } from "@/lib/auth";
 
 type BookDetail = Book & {
   userName?: string;
@@ -20,8 +22,11 @@ export const metadata: Metadata = {
   title: "Book Details",
 };
 
-async function fetchBook(id: string): Promise<BookDetail | null> {
+async function fetchBook(id: string, token: string): Promise<BookDetail | null> {
   const res = await fetch(`${API_BASE}/books/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     cache: "no-store",
   });
 
@@ -103,10 +108,20 @@ async function BookDetails({
 }) {
   const { id } = await params;
 
+  const jwtToken = await auth.api.getToken({
+    headers: await headers(),
+  });
+
+  const token = jwtToken?.token;
+
+  if (!token) {
+    return <BookError />;
+  }
+
   let book: BookDetail | null;
 
   try {
-    book = await fetchBook(id);
+    book = await fetchBook(id, token);
   } catch (error) {
     const status = errorStatus(error);
 

@@ -32,7 +32,7 @@ export default function RegisterPage() {
 
   const busy = loading || googleLoading;
 
-  const hasLength = password.length >= 6;
+  const hasLength = password.length >= 8;
   const hasUppercase = /[A-Z]/.test(password);
   const hasLowercase = /[a-z]/.test(password);
 
@@ -288,7 +288,7 @@ export default function RegisterPage() {
 
                 <ul className="mt-3 space-y-2">
                   {[
-                    { label: "At least 6 characters", valid: hasLength },
+                    { label: "At least 8 characters", valid: hasLength },
                     {
                       label: "One uppercase letter (A-Z)",
                       valid: hasUppercase,

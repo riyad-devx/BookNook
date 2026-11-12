@@ -1,4 +1,5 @@
 import { auth } from "@/lib/auth";
+import { bearerAuth, getRequestToken } from "@/lib/api-auth";
 import { BOOKS_API_BASE } from "@/lib/books-api";
 
 type RouteParams = {
@@ -16,14 +17,24 @@ export async function PATCH(request: Request, { params }: RouteParams) {
     );
   }
 
+  const token = await getRequestToken(request);
+
+  if (!token) {
+    return Response.json(
+      { message: "You must be signed in to edit a book." },
+      { status: 401 },
+    );
+  }
+
   try {
     const { id } = await params;
     const body = await request.json().catch(() => ({}));
 
+    // The backend derives ownership from the token.
     const response = await fetch(`${BOOKS_API_BASE}/books/${id}`, {
       method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...body, userId: session.user.id }),
+      headers: { "Content-Type": "application/json", ...bearerAuth(token) },
+      body: JSON.stringify(body),
     });
 
     const data = await response.json().catch(() => null);
@@ -51,12 +62,23 @@ export async function DELETE(request: Request, { params }: RouteParams) {
     );
   }
 
+  const token = await getRequestToken(request);
+
+  if (!token) {
+    return Response.json(
+      { message: "You must be signed in to delete a book." },
+      { status: 401 },
+    );
+  }
+
   try {
     const { id } = await params;
-    const url = new URL(`${BOOKS_API_BASE}/books/${id}`);
-    url.searchParams.set("userId", session.user.id);
 
-    const response = await fetch(url, { method: "DELETE" });
+    // The backend derives ownership from the token.
+    const response = await fetch(`${BOOKS_API_BASE}/books/${id}`, {
+      method: "DELETE",
+      headers: bearerAuth(token),
+    });
     const data = await response.json().catch(() => null);
 
     return Response.json(
