@@ -1,9 +1,14 @@
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
+import { connectMongo } from "@/lib/mongodb";
 
 /** Reads and verifies the Better Auth session on the server. */
 export async function getServerSession() {
+  // Make sure the shared client is connected before the session is read, so
+  // the lookup never runs against a closed topology.
+  await connectMongo();
+
   return auth.api.getSession({ headers: await headers() });
 }
 
