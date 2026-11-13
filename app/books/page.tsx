@@ -14,13 +14,7 @@ type Status = "loading" | "ready" | "error";
 
 const CARD_SKELETONS = Array.from({ length: 6 });
 
-// The books API the browser talks to directly.
-const API_BASE = process.env.NEXT_PUBLIC_BOOKS_API_URL ?? "http://localhost:5000";
 
-// The books API is a serverless function that connects to MongoDB on a cold
-// start. Without a timeout the browser would wait for the driver default of
-// thirty seconds before showing an error, so the request is given a deadline
-// and retried once.
 const REQUEST_TIMEOUT_MS = 10_000;
 const RETRY_DELAY_MS = 750;
 
@@ -36,7 +30,10 @@ export default function AllBooksList() {
       const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 
       try {
-        const res = await fetch(`${API_BASE}/books`, {
+        // The catalogue is fetched through this app's own route handler so
+        // the request is same-origin and never blocked by the books API's
+        // CORS policy.
+        const res = await fetch("/api/books", {
           cache: "no-store",
           signal: controller.signal,
         });
